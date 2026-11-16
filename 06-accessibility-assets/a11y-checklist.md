@@ -1,16 +1,16 @@
-# ♿ Checklist Básico de Accesibilidad (WCAG) y Evidencias
+# ♿ Basic Accessibility Checklist (WCAG) & Evidences
 
-Este documento sirve para registrar validaciones rápidas de accesibilidad web (a11y) en cualquier aplicación que pruebes.
+This document tracks quick web accessibility (a11y) checks across tested applications.
 
-## Checklist de Revisión Rápida
+## Quick Review Checklist
 
-| Criterio | ¿Qué verificar? | Estado | Observaciones |
+| Criterion | What to Verify | Status | Notes |
 | :--- | :--- | :--- | :--- |
-| **Navegación por teclado** | ¿Puedo navegar por menú, buscador y botones usando solo `Tab`, `Shift+Tab` y `Enter`? | ⬜ Pendiente | |
-| **Foco visible** | ¿Se ve claramente qué elemento está seleccionado al usar `Tab`? | ⬜ Pendiente | |
-| **Texto alternativo (`alt`)** | ¿Las imágenes de productos tienen atributo `alt` descriptivo (inspeccionar con DevTools)? | ⬜ Pendiente | |
-| **Contraste de colores** | ¿Los textos y precios tienen suficiente contraste sobre el fondo (ratio >= 4.5:1)? | ⬜ Pendiente | |
-| **Etiquetas en formularios** | ¿Los inputs (buscador, login) tienen `<label>` o `aria-label` claro? | ⬜ Pendiente | |
-| **Zoom 200%** | Al hacer zoom al 200% en el navegador, ¿el diseño sigue siendo legible sin superposiciones? | ⬜ Pendiente | |
+| **Keyboard Navigation** | Can you navigate menus, search bar, and buttons using only `Tab`, `Shift+Tab`, and `Enter`? | ⬜ Pending | |
+| **Visible Focus** | Is there a clear visual focus indicator on the active element when pressing `Tab`? | ⬜ Pending | |
+| **Alt Text (`alt`)** | Do product images have descriptive `alt` attributes (inspected via DevTools)? | ⬜ Pending | |
+| **Color Contrast** | Do text labels and prices have sufficient contrast against the background (ratio >= 4.5:1)? | ⬜ Pending | |
+| **Form Labels** | Do inputs (search, login) have clear `<label>` or `aria-label` attributes? | ⬜ Pending | |
+| **200% Zoom** | At 200% browser zoom, does the layout remain readable without overlapping elements? | ⬜ Pending | |
 
-> Guarda tus capturas de pantalla y videos cortos en la subcarpeta [`evidences/`](./evidences/).
+> Store execution screenshots and short clips inside [`evidences/`](./evidences/).
