@@ -28,7 +28,8 @@ Bienvenido a mi portafolio de **Quality Assurance (QA)**. Aquí documento mi met
 
 ### 1. E-commerce: Alkosto (`alkosto.com`)
 Pruebas funcionales de flujo crítico de comercio electrónico (búsqueda, filtros, detalle de producto y carrito de compras).
+**Resultado de ejecución:** `5 ✅ Passed` | `2 ❌ Failed` | `2 🐞 Bugs Reportados`
 - 📄 [Plan de Pruebas](./01-test-plan/test-plan-alkosto.md)
 - ✅ [Casos de Prueba (Markdown)](./02-test-cases/alkosto-test-cases.md) | [Exportación CSV](./02-test-cases/alkosto-test-cases.csv)
 - 🥒 [Escenarios Gherkin](./03-bdd-gherkin/alkosto-busqueda-carrito.feature)
-- 🐞 [Plantilla de Bug Report](./04-bug-reports/bug-report-template.md)
+- 🐞 [BUG-001: Buscador cargando con espacios](./04-bug-reports/bug-001-busqueda-espacios.md) | [BUG-002: Pantalla en blanco y error `window.ga`](./04-bug-reports/bug-002-busqueda-sin-resultados-console-error.md) | [Plantilla](./04-bug-reports/bug-report-template.md)
