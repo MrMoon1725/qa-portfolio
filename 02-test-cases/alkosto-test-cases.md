@@ -1,150 +1,150 @@
-# ✅ Casos de Prueba Documentados — Alkosto (`alkosto.com`)
+# ✅ Documented Test Cases — Alkosto (`alkosto.com`)
 
-Estos casos de prueba están diseñados y **ejecutados** sobre los flujos reales de **Alkosto**, cubriendo escenarios **positivos**, **negativos** y de **borde**.
+These test cases are designed and **executed** against real **Alkosto** user flows, covering **positive**, **negative**, and **edge-case** scenarios.
 
-- **Última ejecución:** 16/11/2026 (Google Chrome Incógnito, Windows)
-- **Resumen:** **5 ✅ Passed** | **2 ❌ Failed** | **2 🐞 Bugs Reportados**
+- **Last Execution:** 11/16/2026 (Google Chrome Incognito, Windows)
+- **Summary:** **5 ✅ Passed** | **2 ❌ Failed** | **2 🐞 Bugs Reported**
 
 ---
 
-## 📊 Resumen de Cobertura y Ejecución
+## 📊 Coverage & Execution Summary
 
-| ID | Título | Módulo | Tipo | Prioridad | Estado |
+| ID | Title | Module | Type | Priority | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC-ALK-001** | Búsqueda exitosa de producto existente | Búsqueda | Positivo | Alta (P1) | ✅ Passed |
-| **TC-ALK-002** | Búsqueda con término inexistente | Búsqueda | Negativo | Media (P2) | ❌ Failed ([BUG-002](../04-bug-reports/bug-002-busqueda-sin-resultados-console-error.md)) |
-| **TC-ALK-003** | Búsqueda con campo vacío o solo espacios | Búsqueda | Borde | Media (P2) | ❌ Failed ([BUG-001](../04-bug-reports/bug-001-busqueda-espacios.md)) |
-| **TC-ALK-004** | Filtrado por marca y ordenamiento por menor precio | Resultados | Positivo | Alta (P1) | ✅ Passed |
-| **TC-ALK-005** | Agregar producto desde resultados de búsqueda | Carrito | Positivo | Alta (P1) | ✅ Passed |
-| **TC-ALK-006** | Agregar producto desde PDP omitiendo Kombos y servicios | PDP / Carrito | Positivo | Alta (P1) | ✅ Passed |
-| **TC-ALK-007** | Modificar cantidad y eliminar producto en `/cart` | Carrito | Positivo | Alta (P1) | ✅ Passed |
+| **TC-ALK-001** | Successful search for an existing product | Search | Positive | High (P1) | ✅ Passed |
+| **TC-ALK-002** | Search with a non-existent term | Search | Negative | Medium (P2) | ❌ Failed ([BUG-002](../04-bug-reports/bug-002-busqueda-sin-resultados-console-error.md)) |
+| **TC-ALK-003** | Search with empty or whitespace-only input | Search | Edge Case | Medium (P2) | ❌ Failed ([BUG-001](../04-bug-reports/bug-001-busqueda-espacios.md)) |
+| **TC-ALK-004** | Filter by brand and sort by lowest price | Results | Positive | High (P1) | ✅ Passed |
+| **TC-ALK-005** | Add product directly from search results | Cart | Positive | High (P1) | ✅ Passed |
+| **TC-ALK-006** | Add product from PDP skipping Kombos & add-ons | PDP / Cart | Positive | High (P1) | ✅ Passed |
+| **TC-ALK-007** | Update quantity and remove product in `/cart` | Cart | Positive | High (P1) | ✅ Passed |
 
 ---
 
-## 📝 Detalle de Casos de Prueba
+## 📝 Test Case Details
 
-### TC-ALK-001: Búsqueda exitosa de producto existente
-- **Módulo:** Búsqueda
-- **Prioridad:** Alta (P1)
-- **Tipo:** Funcional / Positivo
-- **Precondiciones:** El usuario está en `https://www.alkosto.com/`.
+### TC-ALK-001: Successful search for an existing product
+- **Module:** Search
+- **Priority:** High (P1)
+- **Type:** Functional / Positive
+- **Preconditions:** User is on `https://www.alkosto.com/`.
 
-| Paso | Acción | Datos de prueba | Resultado esperado |
+| Step | Action | Test Data | Expected Result |
 | :--- | :--- | :--- | :--- |
-| 1 | Hacer clic en la barra de búsqueda `"¿Qué buscas hoy?"` | N/A | Se abre el overlay interactivo de búsqueda con sugerencias (`Lo más buscado`). |
-| 2 | Escribir la palabra clave | `celular` | El campo muestra el texto ingresado. |
-| 3 | Presionar `Enter` o el ícono de lupa | N/A | Redirige a `/search?text=celular` y muestra el conteo de resultados y tarjetas de productos con precio y botón `"Agregar"`. |
+| 1 | Click the `"¿Qué buscas hoy?"` search bar | N/A | Interactive search overlay opens with suggestions (`Lo más buscado`). |
+| 2 | Type a valid product keyword | `celular` | Input field displays the typed text. |
+| 3 | Press `Enter` or click the search icon | N/A | Redirects to `/search?text=celular` showing result count and product cards with prices and `"Agregar"` button. |
 
-- **Estado:** ✅ Passed
-- **Evidencia:** [Ver captura](../06-accessibility-assets/evidences/tc-alk-001-busqueda-celular.png)
+- **Status:** ✅ Passed
+- **Evidence:** [View screenshot](../06-accessibility-assets/evidences/tc-alk-001-busqueda-celular.png)
 
 ---
 
-### TC-ALK-002: Búsqueda con término inexistente
-- **Módulo:** Búsqueda
-- **Prioridad:** Media (P2)
-- **Tipo:** Funcional / Negativo
-- **Precondiciones:** El usuario está en `https://www.alkosto.com/`.
+### TC-ALK-002: Search with a non-existent term
+- **Module:** Search
+- **Priority:** Medium (P2)
+- **Type:** Functional / Negative
+- **Preconditions:** User is on `https://www.alkosto.com/`.
 
-| Paso | Acción | Datos de prueba | Resultado esperado |
+| Step | Action | Test Data | Expected Result |
 | :--- | :--- | :--- | :--- |
-| 1 | Hacer clic en la barra de búsqueda `"¿Qué buscas hoy?"` | N/A | Se activa el campo de búsqueda. |
-| 2 | Ingresar una cadena sin coincidencias | `xyzqwerty99999` | El campo acepta la cadena. |
-| 3 | Presionar `Enter` | N/A | El sistema muestra un mensaje amigable indicando que no se encontraron resultados (sin errores 500 ni pantalla en blanco). |
+| 1 | Click the `"¿Qué buscas hoy?"` search bar | N/A | Search input becomes active. |
+| 2 | Enter a string with no matching products | `xyzqwerty99999` | Field accepts the string. |
+| 3 | Press `Enter` | N/A | System displays a user-friendly "no results found" message (no HTTP 500 errors or blank screen). |
 
-- **Estado:** ❌ Failed
-- **Bug asociado:** [BUG-002](../04-bug-reports/bug-002-busqueda-sin-resultados-console-error.md) — Pantalla en blanco intermitente, petición fallida en Network y error `Uncaught TypeError: window.ga is not a function` en Console.
-- **Evidencias:**
-  - [Fallo en DevTools y pantalla en blanco](../06-accessibility-assets/evidences/bug-002-devtools-pantalla-blanca.png)
-  - [Mensaje esperado observado tras recarga](../06-accessibility-assets/evidences/tc-alk-002-mensaje-sin-resultados.png)
+- **Status:** ❌ Failed
+- **Linked Bug:** [BUG-002](../04-bug-reports/bug-002-busqueda-sin-resultados-console-error.md) — Intermittent blank screen, failed Network request, and `Uncaught TypeError: window.ga is not a function` in Console.
+- **Evidences:**
+  - [DevTools failure & blank screen](../06-accessibility-assets/evidences/bug-002-devtools-pantalla-blanca.png)
+  - [Expected message observed after page reload](../06-accessibility-assets/evidences/tc-alk-002-mensaje-sin-resultados.png)
 
 ---
 
-### TC-ALK-003: Búsqueda con campo vacío o solo espacios
-- **Módulo:** Búsqueda
-- **Prioridad:** Media (P2)
-- **Tipo:** Borde (Edge Case)
-- **Precondiciones:** El usuario está en `https://www.alkosto.com/`.
+### TC-ALK-003: Search with empty or whitespace-only input
+- **Module:** Search
+- **Priority:** Medium (P2)
+- **Type:** Boundary / Edge Case
+- **Preconditions:** User is on `https://www.alkosto.com/`.
 
-| Paso | Acción | Datos de prueba | Resultado esperado |
+| Step | Action | Test Data | Expected Result |
 | :--- | :--- | :--- | :--- |
-| 1 | Hacer clic en la barra de búsqueda `"¿Qué buscas hoy?"` | N/A | Se abre el overlay de búsqueda. |
-| 2 | Ingresar solo espacios en blanco y presionar `Enter` | `"   "` | El sistema no debe navegar a una página rota; debe permanecer en el buscador o mostrar validación/sugerencias. |
+| 1 | Click the `"¿Qué buscas hoy?"` search bar | N/A | Search overlay opens. |
+| 2 | Enter whitespace characters only and press `Enter` | `"   "` | System should not navigate to a broken/empty page; it should remain on the search bar or display a validation prompt. |
 
-- **Estado:** ❌ Failed
-- **Bug asociado:** [BUG-001](../04-bug-reports/bug-001-busqueda-espacios.md) — El buscador se queda cargando indefinidamente en pantalla en blanco.
-- **Evidencia:** [Ver captura](../06-accessibility-assets/evidences/bug-001-busqueda-espacios-cargando.png)
+- **Status:** ❌ Failed
+- **Linked Bug:** [BUG-001](../04-bug-reports/bug-001-busqueda-espacios.md) — Search stays loading indefinitely on a blank screen.
+- **Evidence:** [View screenshot](../06-accessibility-assets/evidences/bug-001-busqueda-espacios-cargando.png)
 
 ---
 
-### TC-ALK-004: Filtrado por marca y ordenamiento por menor precio
-- **Módulo:** Resultados de Búsqueda
-- **Prioridad:** Alta (P1)
-- **Tipo:** Funcional / Positivo
-- **Precondiciones:** El usuario está en `/search?text=celular`.
+### TC-ALK-004: Filter by brand and sort by lowest price
+- **Module:** Search Results
+- **Priority:** High (P1)
+- **Type:** Functional / Positive
+- **Preconditions:** User is on `/search?text=celular`.
 
-| Paso | Acción | Datos de prueba | Resultado esperado |
+| Step | Action | Test Data | Expected Result |
 | :--- | :--- | :--- | :--- |
-| 1 | Hacer clic en el botón `"Filtrar"` | N/A | Se abre el panel lateral/modal de filtros (`Filtros aplicados (0)`). |
-| 2 | Expandir `Marca`, seleccionar una marca y hacer clic en `"Aplicar y ver resultados"` | `SAMSUNG` | La lista se actualiza mostrando solo productos Samsung y el contador de filtros refleja `1`. |
-| 3 | Hacer clic en el botón `"Ordenar"`, elegir `Precio: menor a mayor` y hacer clic en `"Aplicar y ver resultados"` | `Precio: menor a mayor` | Los productos se muestran ordenados ascendentemente según su precio actual de venta. |
+| 1 | Click the `"Filtrar"` button | N/A | Filter drawer/modal opens (`Filtros aplicados (0)`). |
+| 2 | Expand `Marca`, select a brand, and click `"Aplicar y ver resultados"` | `SAMSUNG` | Product list updates to show only Samsung items and active filter count shows `1`. |
+| 3 | Click `"Ordenar"`, choose `Precio: menor a mayor`, and click `"Aplicar y ver resultados"` | `Precio: menor a mayor` | Products are sorted in ascending order by current sale price. |
 
-- **Estado:** ✅ Passed
-- **Evidencia:** [Ver captura](../06-accessibility-assets/evidences/tc-alk-004-filtro-samsung-orden-precio.png)
+- **Status:** ✅ Passed
+- **Evidence:** [View screenshot](../06-accessibility-assets/evidences/tc-alk-004-filtro-samsung-orden-precio.png)
 
 ---
 
-### TC-ALK-005: Agregar producto directamente desde resultados de búsqueda
-- **Módulo:** Carrito de Compras
-- **Prioridad:** Alta (P1)
-- **Tipo:** Funcional / Positivo
-- **Precondiciones:** El usuario está en `/search?text=celular` y el contador de `Mi carrito` está en `0`.
+### TC-ALK-005: Add product directly from search results
+- **Module:** Shopping Cart
+- **Priority:** High (P1)
+- **Type:** Functional / Positive
+- **Preconditions:** User is on `/search?text=celular` and `Mi carrito` badge is `0`.
 
-| Paso | Acción | Datos de prueba | Resultado esperado |
+| Step | Action | Test Data | Expected Result |
 | :--- | :--- | :--- | :--- |
-| 1 | Ubicar una tarjeta de producto con botón naranja `"Agregar"` | N/A | El botón es visible y habilitado. |
-| 2 | Hacer clic en `"Agregar"` | N/A | El producto se agrega de forma asíncrona sin perder la página actual y el contador en `Mi carrito` cambia de `0` a `1`. |
+| 1 | Locate a product card with an orange `"Agregar"` button | N/A | Button is visible and enabled. |
+| 2 | Click `"Agregar"` | N/A | Product is added asynchronously without full page reload and `Mi carrito` badge increments from `0` to `1`. |
 
-- **Estado:** ✅ Passed
-- **Evidencias:**
-  - [Antes de agregar](../06-accessibility-assets/evidences/tc-alk-005-carrito-antes.png)
-  - [Después de agregar (`Mi carrito: 1`)](../06-accessibility-assets/evidences/tc-alk-005-carrito-despues.png)
+- **Status:** ✅ Passed
+- **Evidences:**
+  - [Before adding](../06-accessibility-assets/evidences/tc-alk-005-carrito-antes.png)
+  - [After adding (`Mi carrito: 1`)](../06-accessibility-assets/evidences/tc-alk-005-carrito-despues.png)
 
 ---
 
-### TC-ALK-006: Agregar producto desde PDP omitiendo Kombos y servicios adicionales
-- **Módulo:** Detalle de Producto (PDP) / Carrito
-- **Prioridad:** Alta (P1)
-- **Tipo:** Funcional / Positivo
-- **Precondiciones:** El usuario está en la página de detalle (PDP) de un celular disponible.
+### TC-ALK-006: Add product from PDP skipping Kombos & add-ons
+- **Module:** Product Detail Page (PDP) / Cart
+- **Priority:** High (P1)
+- **Type:** Functional / Positive
+- **Preconditions:** User is on the Product Detail Page (PDP) of an available smartphone.
 
-| Paso | Acción | Datos de prueba | Resultado esperado |
+| Step | Action | Test Data | Expected Result |
 | :--- | :--- | :--- | :--- |
-| 1 | Seleccionar capacidad, color y método de entrega (`Envío gratis`) | `256 GB`, `Envío gratis` | Las opciones quedan seleccionadas y el precio se actualiza si aplica. |
-| 2 | Hacer clic en `"Agregar al carrito"` | N/A | Se abre el modal `"Compra en Kombo"`. |
-| 3 | Hacer clic en `"Agregar sin Kombo"` | N/A | Avanza al modal secundario `"Complementa tu compra"`. |
-| 4 | Hacer clic en `"Continuar"` | N/A | Se cierra el flujo de upsell y el contador de `Mi carrito` en la cabecera se incrementa en `1`. |
+| 1 | Select storage, color, and delivery method (`Envío gratis`) | `256 GB`, `Envío gratis` | Options remain selected and price updates if applicable. |
+| 2 | Click `"Agregar al carrito"` | N/A | `"Compra en Kombo"` modal opens. |
+| 3 | Click `"Agregar sin Kombo"` | N/A | Advances to `"Complementa tu compra"` modal. |
+| 4 | Click `"Continuar"` | N/A | Upsell funnel closes and header `Mi carrito` badge increments by `1`. |
 
-- **Estado:** ✅ Passed
-- **Evidencias:**
-  - [Modal Compra en Kombo](../06-accessibility-assets/evidences/tc-alk-006-modal-kombo.png)
-  - [Producto agregado en `/cart`](../06-accessibility-assets/evidences/tc-alk-006-carrito-agregado.png)
+- **Status:** ✅ Passed
+- **Evidences:**
+  - [Compra en Kombo modal](../06-accessibility-assets/evidences/tc-alk-006-modal-kombo.png)
+  - [Product added in `/cart`](../06-accessibility-assets/evidences/tc-alk-006-carrito-agregado.png)
 
 ---
 
-### TC-ALK-007: Modificar cantidad y eliminar producto en `/cart`
-- **Módulo:** Carrito de Compras
-- **Prioridad:** Alta (P1)
-- **Tipo:** Funcional / Positivo
-- **Precondiciones:** Hay al menos 1 producto en `Mi carrito` y el usuario navega a `/cart`.
+### TC-ALK-007: Update quantity and remove product in `/cart`
+- **Module:** Shopping Cart
+- **Priority:** High (P1)
+- **Type:** Functional / Positive
+- **Preconditions:** At least 1 product is in `Mi carrito` and user navigates to `/cart`.
 
-| Paso | Acción | Datos de prueba | Resultado esperado |
+| Step | Action | Test Data | Expected Result |
 | :--- | :--- | :--- | :--- |
-| 1 | Cambiar el selector de cantidad del producto de `1` a `2` | `2` | El Subtotal y el Total a pagar se recalculan automáticamente multiplicando por 2. |
-| 2 | Hacer clic en el enlace `"Eliminar"` del producto (o elegir `0 - eliminar`) | N/A | El producto desaparece de la lista, el total pasa a `$0` / carrito vacío y el badge de `Mi carrito` vuelve a `0`. |
+| 1 | Change product quantity selector from `1` to `2` | `2` | Subtotal and Total to pay recalculate accurately (2x). |
+| 2 | Click `"Eliminar"` on the product (or select `0 - eliminar`) | N/A | Product is removed from the list, total resets to `$0` / empty cart message, and `Mi carrito` badge returns to `0`. |
 
-- **Estado:** ✅ Passed
-- **Evidencias:**
-  - [Cantidad actualizada](../06-accessibility-assets/evidences/tc-alk-007-cantidad-actualizada.png)
-  - [Cantidad en 2 y recálculo de Subtotal/Total](../06-accessibility-assets/evidences/tc-alk-007-cantidad-2-subtotal.png)
-  - [Producto eliminado y carrito vacío](../06-accessibility-assets/evidences/tc-alk-007-carrito-vacio.png)
+- **Status:** ✅ Passed
+- **Evidences:**
+  - [Quantity updated](../06-accessibility-assets/evidences/tc-alk-007-cantidad-actualizada.png)
+  - [Quantity set to 2 & Subtotal/Total recalculated](../06-accessibility-assets/evidences/tc-alk-007-cantidad-2-subtotal.png)
+  - [Product removed & empty cart](../06-accessibility-assets/evidences/tc-alk-007-carrito-vacio.png)
