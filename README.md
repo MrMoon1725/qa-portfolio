@@ -33,3 +33,9 @@ Pruebas funcionales de flujo crítico de comercio electrónico (búsqueda, filtr
 - ✅ [Casos de Prueba (Markdown)](./02-test-cases/alkosto-test-cases.md) | [Exportación CSV](./02-test-cases/alkosto-test-cases.csv)
 - 🥒 [Escenarios Gherkin](./03-bdd-gherkin/alkosto-busqueda-carrito.feature)
 - 🐞 [BUG-001: Buscador cargando con espacios](./04-bug-reports/bug-001-busqueda-espacios.md) | [BUG-002: Pantalla en blanco y error `window.ga`](./04-bug-reports/bug-002-busqueda-sin-resultados-console-error.md) | [Plantilla](./04-bug-reports/bug-report-template.md)
+
+### 2. Pruebas de API REST: Restful-Booker (`Postman`)
+Suite automatizada en Postman cubriendo autenticación por token, flujo CRUD completo (`POST`, `GET`, `PUT`, `DELETE`) y caso negativo (`404 Not Found`).
+**Resultado de ejecución:** `7 ✅ Passed` | `0 ❌ Failed`
+- 🔌 [Documentación de la Suite API](./05-api-testing/README.md)
+- 📦 [Colección Postman (.json)](./05-api-testing/restful-booker.postman_collection.json)
