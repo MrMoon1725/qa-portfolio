@@ -1,4 +1,4 @@
-# 🧪 Portafolio de QA — [Tu Nombre]
+# 🧪 Portafolio de QA — Mateo Pimienta
 
 Bienvenido a mi portafolio de **Quality Assurance (QA)**. Aquí documento mi metodología de pruebas, artefactos de calidad y casos prácticos aplicados sobre aplicaciones web reales.
 
