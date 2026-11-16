@@ -3,20 +3,22 @@
 En esta carpeta se documentan las pruebas de API REST realizadas con **Postman** sobre el entorno público de práctica **Restful-Booker** (`https://restful-booker.herokuapp.com`).
 
 - **Colección exportada:** [restful-booker.postman_collection.json](./restful-booker.postman_collection.json)
+- **Última ejecución:** 16/11/2026 (Postman Web)
+- **Resultado:** **7 ✅ Passed** | **0 ❌ Failed**
 
 ---
 
 ## 🧪 Casos de Prueba Automatizados en Postman
 
-| # | Método | Endpoint | Tipo | Validaciones (Assertions) |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | `POST` | `/auth` | Positivo | Status `200`, devuelve `token` y lo guarda en variable de colección. |
-| 2 | `GET` | `/booking` | Positivo | Status `200`, tiempo `< 2000ms`, devuelve un arreglo no vacío. |
-| 3 | `POST` | `/booking` | Positivo | Status `200`, crea reserva con datos válidos y guarda `bookingid`. |
-| 4 | `GET` | `/booking/{{bookingid}}` | Positivo | Status `200`, los datos consultados coinciden con los creados. |
-| 5 | `PUT` | `/booking/{{bookingid}}` | Positivo | Status `200` (con Cookie `token`), actualiza `totalprice` y `additionalneeds`. |
-| 6 | `DELETE` | `/booking/{{bookingid}}` | Positivo | Status `201 Created`, elimina la reserva creada. |
-| 7 | `GET` | `/booking/999999999` | Negativo | Status `404 Not Found` al consultar un ID inexistente. |
+| # | Método | Endpoint | Tipo | Validaciones (Assertions) | Estado |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | `POST` | `/auth` | Positivo | Status `200`, devuelve `token` y lo guarda en variable de colección. | ✅ Passed |
+| 2 | `GET` | `/booking` | Positivo | Status `200`, tiempo `< 2000ms`, devuelve un arreglo no vacío. | ✅ Passed |
+| 3 | `POST` | `/booking` | Positivo | Status `200`, crea reserva con datos válidos y guarda `bookingid`. | ✅ Passed |
+| 4 | `GET` | `/booking/{{bookingid}}` | Positivo | Status `200`, los datos consultados coinciden con los creados. | ✅ Passed |
+| 5 | `PUT` | `/booking/{{bookingid}}` | Positivo | Status `200` (con Cookie `token`), actualiza `totalprice` y `additionalneeds`. | ✅ Passed |
+| 6 | `DELETE` | `/booking/{{bookingid}}` | Positivo | Status `201 Created`, elimina la reserva creada. | ✅ Passed |
+| 7 | `GET` | `/booking/999999999` | Negativo | Status `404 Not Found` al consultar un ID inexistente. | ✅ Passed |
 
 ---
 
