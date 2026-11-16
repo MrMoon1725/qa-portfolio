@@ -1,0 +1,194 @@
+{
+  "info": {
+    "name": "Restful-Booker API QA Suite",
+    "description": "Colección de pruebas de API (CRUD + Autenticación + Caso Negativo) para el portafolio QA de Mateo Pimienta.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://restful-booker.herokuapp.com" },
+    { "key": "token", "value": "" },
+    { "key": "bookingid", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1. Auth - Crear Token (POST /auth)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Respuesta contiene token', function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.have.property('token');",
+              "    pm.collectionVariables.set('token', json.token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/auth", "host": ["{{baseUrl}}"], "path": ["auth"] }
+      }
+    },
+    {
+      "name": "2. Listar Reservas (GET /booking)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Tiempo de respuesta menor a 2000ms', function () { pm.expect(pm.response.responseTime).to.be.below(2000); });",
+              "pm.test('Devuelve una lista no vacía de reservas', function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.be.an('array').that.is.not.empty;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/booking", "host": ["{{baseUrl}}"], "path": ["booking"] }
+      }
+    },
+    {
+      "name": "3. Crear Reserva (POST /booking)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Reserva creada con bookingid y datos correctos', function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.have.property('bookingid');",
+              "    pm.expect(json.booking.firstname).to.eql('Mateo');",
+              "    pm.expect(json.booking.lastname).to.eql('Pimienta');",
+              "    pm.collectionVariables.set('bookingid', json.bookingid);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstname\": \"Mateo\",\n  \"lastname\": \"Pimienta\",\n  \"totalprice\": 250,\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-12-01\",\n    \"checkout\": \"2026-12-05\"\n  },\n  \"additionalneeds\": \"Desayuno\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/booking", "host": ["{{baseUrl}}"], "path": ["booking"] }
+      }
+    },
+    {
+      "name": "4. Consultar Reserva Creada (GET /booking/:id)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Los datos coinciden con la reserva creada', function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.firstname).to.eql('Mateo');",
+              "    pm.expect(json.totalprice).to.eql(250);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/booking/{{bookingid}}", "host": ["{{baseUrl}}"], "path": ["booking", "{{bookingid}}"] }
+      }
+    },
+    {
+      "name": "5. Actualizar Reserva (PUT /booking/:id)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('El precio y necesidad adicional se actualizaron', function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.totalprice).to.eql(320);",
+              "    pm.expect(json.additionalneeds).to.eql('Desayuno y Wi-Fi');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Cookie", "value": "token={{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstname\": \"Mateo\",\n  \"lastname\": \"Pimienta\",\n  \"totalprice\": 320,\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-12-01\",\n    \"checkout\": \"2026-12-05\"\n  },\n  \"additionalneeds\": \"Desayuno y Wi-Fi\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/booking/{{bookingid}}", "host": ["{{baseUrl}}"], "path": ["booking", "{{bookingid}}"] }
+      }
+    },
+    {
+      "name": "6. Eliminar Reserva (DELETE /booking/:id)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code es 201 Created', function () { pm.response.to.have.status(201); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Cookie", "value": "token={{token}}" }
+        ],
+        "url": { "raw": "{{baseUrl}}/booking/{{bookingid}}", "host": ["{{baseUrl}}"], "path": ["booking", "{{bookingid}}"] }
+      }
+    },
+    {
+      "name": "7. Negativo - Consultar Reserva Inexistente (GET /booking/999999999)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code es 404 Not Found', function () { pm.response.to.have.status(404); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/booking/999999999", "host": ["{{baseUrl}}"], "path": ["booking", "999999999"] }
+      }
+    }
+  ]
+}
