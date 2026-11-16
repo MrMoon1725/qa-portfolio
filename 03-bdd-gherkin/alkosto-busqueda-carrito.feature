@@ -1,25 +1,25 @@
-Feature: Búsqueda, filtrado y carrito de compras en Alkosto
-  Como comprador de alkosto.com
-  Quiero buscar productos, filtrarlos y gestionarlos en mi carrito
-  Para completar mi selección de compra correctamente
+Feature: Search, filtering, and shopping cart on Alkosto
+  As a shopper on alkosto.com
+  I want to search for products, filter results, and manage my cart
+  So that I can complete my product selection accurately
 
   Background:
-    Given que el usuario abre la página principal "https://www.alkosto.com/"
+    Given the user opens the homepage "https://www.alkosto.com/"
 
-  Scenario: Búsqueda exitosa desde la barra principal
-    When hace clic en la barra "¿Qué buscas hoy?"
-    And escribe "celular" y presiona Enter
-    Then el sistema muestra la página de resultados con el conteo de productos encontrados
-    And cada tarjeta muestra nombre, precio y el botón "Agregar"
+  Scenario: Successful product search from the main search bar
+    When the user clicks the "¿Qué buscas hoy?" search bar
+    And types "celular" and presses Enter
+    Then the system displays the search results page with the total result count
+    And each product card displays a name, price, and "Agregar" button
 
-  Scenario: Búsqueda sin resultados
-    When busca el término inexistente "xyzqwerty99999"
-    Then el sistema informa que no hay coincidencias para la búsqueda
-    And no muestra errores HTTP 500 ni pantalla en blanco
+  Scenario: Search with no matching results
+    When the user searches for the non-existent term "xyzqwerty99999"
+    Then the system informs the user that no matches were found
+    And no HTTP 500 errors or blank screens are shown
 
-  Scenario: Agregar producto al carrito desde PDP omitiendo Kombos
-    Given que el usuario ingresa al detalle de un celular disponible
-    When selecciona "Envío gratis" y hace clic en "Agregar al carrito"
-    And en el modal "Compra en Kombo" selecciona "Agregar sin Kombo"
-    And en el modal "Complementa tu compra" selecciona "Continuar"
-    Then el contador de "Mi carrito" en la cabecera aumenta en 1
+  Scenario: Add product to cart from PDP skipping Kombos
+    Given the user opens the Product Detail Page of an available smartphone
+    When the user selects "Envío gratis" and clicks "Agregar al carrito"
+    And selects "Agregar sin Kombo" in the "Compra en Kombo" modal
+    And selects "Continuar" in the "Complementa tu compra" modal
+    Then the "Mi carrito" badge counter in the header increments by 1
