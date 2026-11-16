@@ -1,29 +1,29 @@
-# 🔌 Pruebas de API (API Testing) — Restful-Booker
+# 🔌 REST API Testing — Restful-Booker
 
-En esta carpeta se documentan las pruebas de API REST realizadas con **Postman** sobre el entorno público de práctica **Restful-Booker** (`https://restful-booker.herokuapp.com`).
+This folder documents automated REST API tests built with **Postman** against the public QA practice environment **Restful-Booker** (`https://restful-booker.herokuapp.com`).
 
-- **Colección exportada:** [restful-booker.postman_collection.json](./restful-booker.postman_collection.json)
-- **Última ejecución:** 16/11/2026 (Postman Web)
-- **Resultado:** **7 ✅ Passed** | **0 ❌ Failed**
+- **Exported Collection:** [restful-booker.postman_collection.json](./restful-booker.postman_collection.json)
+- **Last Execution:** 11/16/2026 (Postman Web)
+- **Result:** **7 ✅ Passed** | **0 ❌ Failed**
 
 ---
 
-## 🧪 Casos de Prueba Automatizados en Postman
+## 🧪 Automated Postman Test Cases
 
-| # | Método | Endpoint | Tipo | Validaciones (Assertions) | Estado |
+| # | Method | Endpoint | Type | Assertions | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | `POST` | `/auth` | Positivo | Status `200`, devuelve `token` y lo guarda en variable de colección. | ✅ Passed |
-| 2 | `GET` | `/booking` | Positivo | Status `200`, tiempo `< 2000ms`, devuelve un arreglo no vacío. | ✅ Passed |
-| 3 | `POST` | `/booking` | Positivo | Status `200`, crea reserva con datos válidos y guarda `bookingid`. | ✅ Passed |
-| 4 | `GET` | `/booking/{{bookingid}}` | Positivo | Status `200`, los datos consultados coinciden con los creados. | ✅ Passed |
-| 5 | `PUT` | `/booking/{{bookingid}}` | Positivo | Status `200` (con Cookie `token`), actualiza `totalprice` y `additionalneeds`. | ✅ Passed |
-| 6 | `DELETE` | `/booking/{{bookingid}}` | Positivo | Status `201 Created`, elimina la reserva creada. | ✅ Passed |
-| 7 | `GET` | `/booking/999999999` | Negativo | Status `404 Not Found` al consultar un ID inexistente. | ✅ Passed |
+| 1 | `POST` | `/auth` | Positive | Status `200`, returns `token` and stores it in a collection variable. | ✅ Passed |
+| 2 | `GET` | `/booking` | Positive | Status `200`, response time `< 2000ms`, returns a non-empty array. | ✅ Passed |
+| 3 | `POST` | `/booking` | Positive | Status `200`, creates booking with valid payload and stores `bookingid`. | ✅ Passed |
+| 4 | `GET` | `/booking/{{bookingid}}` | Positive | Status `200`, retrieved payload matches created booking data. | ✅ Passed |
+| 5 | `PUT` | `/booking/{{bookingid}}` | Positive | Status `200` (with `token` Cookie), updates `totalprice` and `additionalneeds`. | ✅ Passed |
+| 6 | `DELETE` | `/booking/{{bookingid}}` | Positive | Status `201 Created`, deletes the created booking. | ✅ Passed |
+| 7 | `GET` | `/booking/999999999` | Negative | Status `404 Not Found` when querying a non-existent booking ID. | ✅ Passed |
 
 ---
 
-## ▶️ Cómo ejecutar esta colección en Postman
-1. Abre **Postman** y haz clic en **Import**.
-2. Selecciona el archivo `restful-booker.postman_collection.json`.
-3. Haz clic en los tres puntos (`...`) de la colección **Restful-Booker API QA Suite** > **Run collection**.
-4. Presiona **Run Restful-Booker API QA Suite** para ejecutar los 7 requests en orden y ver todas las aserciones en verde.
+## ▶️ How to Run This Collection in Postman
+1. Open **Postman** and click **Import**.
+2. Select `restful-booker.postman_collection.json`.
+3. Click the three dots (`...`) on **Restful-Booker API QA Suite** > **Run collection**.
+4. Click **Run Restful-Booker API QA Suite** to execute all 7 requests sequentially and verify all assertions pass.
