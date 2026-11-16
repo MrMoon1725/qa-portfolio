@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Restful-Booker API QA Suite",
-    "description": "Colección de pruebas de API (CRUD + Autenticación + Caso Negativo) para el portafolio QA de Mateo Pimienta.",
+    "description": "Automated REST API test suite (CRUD + Token Auth + Negative 404 case) for Mateo Pimienta's QA Portfolio.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -11,14 +11,14 @@
   ],
   "item": [
     {
-      "name": "1. Auth - Crear Token (POST /auth)",
+      "name": "1. Auth - Create Token (POST /auth)",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
-              "pm.test('Respuesta contiene token', function () {",
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Response contains auth token', function () {",
               "    var json = pm.response.json();",
               "    pm.expect(json).to.have.property('token');",
               "    pm.collectionVariables.set('token', json.token);",
@@ -33,21 +33,21 @@
         "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}"
+          "raw": "{\\n  \"username\": \"admin\",\\n  \"password\": \"password123\"\\n}"
         },
         "url": { "raw": "{{baseUrl}}/auth", "host": ["{{baseUrl}}"], "path": ["auth"] }
       }
     },
     {
-      "name": "2. Listar Reservas (GET /booking)",
+      "name": "2. List Bookings (GET /booking)",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
-              "pm.test('Tiempo de respuesta menor a 2000ms', function () { pm.expect(pm.response.responseTime).to.be.below(2000); });",
-              "pm.test('Devuelve una lista no vacía de reservas', function () {",
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Response time is below 2000ms', function () { pm.expect(pm.response.responseTime).to.be.below(2000); });",
+              "pm.test('Returns a non-empty booking array', function () {",
               "    var json = pm.response.json();",
               "    pm.expect(json).to.be.an('array').that.is.not.empty;",
               "});"
@@ -62,14 +62,14 @@
       }
     },
     {
-      "name": "3. Crear Reserva (POST /booking)",
+      "name": "3. Create Booking (POST /booking)",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
-              "pm.test('Reserva creada con bookingid y datos correctos', function () {",
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Booking created with bookingid and valid payload', function () {",
               "    var json = pm.response.json();",
               "    pm.expect(json).to.have.property('bookingid');",
               "    pm.expect(json.booking.firstname).to.eql('Mateo');",
@@ -89,20 +89,20 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"firstname\": \"Mateo\",\n  \"lastname\": \"Pimienta\",\n  \"totalprice\": 250,\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-12-01\",\n    \"checkout\": \"2026-12-05\"\n  },\n  \"additionalneeds\": \"Desayuno\"\n}"
+          "raw": "{\\n  \"firstname\": \"Mateo\",\\n  \"lastname\": \"Pimienta\",\\n  \"totalprice\": 250,\\n  \"depositpaid\": true,\\n  \"bookingdates\": {\\n    \"checkin\": \"2026-12-01\",\\n    \"checkout\": \"2026-12-05\"\\n  },\\n  \"additionalneeds\": \"Breakfast\"\\n}"
         },
         "url": { "raw": "{{baseUrl}}/booking", "host": ["{{baseUrl}}"], "path": ["booking"] }
       }
     },
     {
-      "name": "4. Consultar Reserva Creada (GET /booking/:id)",
+      "name": "4. Get Created Booking (GET /booking/:id)",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
-              "pm.test('Los datos coinciden con la reserva creada', function () {",
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Retrieved data matches created booking', function () {",
               "    var json = pm.response.json();",
               "    pm.expect(json.firstname).to.eql('Mateo');",
               "    pm.expect(json.totalprice).to.eql(250);",
@@ -119,17 +119,17 @@
       }
     },
     {
-      "name": "5. Actualizar Reserva (PUT /booking/:id)",
+      "name": "5. Update Booking (PUT /booking/:id)",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test('Status code es 200', function () { pm.response.to.have.status(200); });",
-              "pm.test('El precio y necesidad adicional se actualizaron', function () {",
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Price and additionalneeds updated successfully', function () {",
               "    var json = pm.response.json();",
               "    pm.expect(json.totalprice).to.eql(320);",
-              "    pm.expect(json.additionalneeds).to.eql('Desayuno y Wi-Fi');",
+              "    pm.expect(json.additionalneeds).to.eql('Breakfast and Wi-Fi');",
               "});"
             ],
             "type": "text/javascript"
@@ -145,19 +145,19 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"firstname\": \"Mateo\",\n  \"lastname\": \"Pimienta\",\n  \"totalprice\": 320,\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-12-01\",\n    \"checkout\": \"2026-12-05\"\n  },\n  \"additionalneeds\": \"Desayuno y Wi-Fi\"\n}"
+          "raw": "{\\n  \"firstname\": \"Mateo\",\\n  \"lastname\": \"Pimienta\",\\n  \"totalprice\": 320,\\n  \"depositpaid\": true,\\n  \"bookingdates\": {\\n    \"checkin\": \"2026-12-01\",\\n    \"checkout\": \"2026-12-05\"\\n  },\\n  \"additionalneeds\": \"Breakfast and Wi-Fi\"\\n}"
         },
         "url": { "raw": "{{baseUrl}}/booking/{{bookingid}}", "host": ["{{baseUrl}}"], "path": ["booking", "{{bookingid}}"] }
       }
     },
     {
-      "name": "6. Eliminar Reserva (DELETE /booking/:id)",
+      "name": "6. Delete Booking (DELETE /booking/:id)",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test('Status code es 201 Created', function () { pm.response.to.have.status(201); });"
+              "pm.test('Status code is 201 Created', function () { pm.response.to.have.status(201); });"
             ],
             "type": "text/javascript"
           }
@@ -173,13 +173,13 @@
       }
     },
     {
-      "name": "7. Negativo - Consultar Reserva Inexistente (GET /booking/999999999)",
+      "name": "7. Negative - Get Non-Existent Booking (GET /booking/999999999)",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test('Status code es 404 Not Found', function () { pm.response.to.have.status(404); });"
+              "pm.test('Status code is 404 Not Found', function () { pm.response.to.have.status(404); });"
             ],
             "type": "text/javascript"
           }
