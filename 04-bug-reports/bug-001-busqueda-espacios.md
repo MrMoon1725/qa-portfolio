@@ -1,27 +1,27 @@
-# 🐞 [BUG-001] El buscador se queda cargando indefinidamente al buscar solo espacios en blanco
+# 🐞 [BUG-001] Search bar hangs indefinitely on a blank screen when searching whitespace only
 
-- **Proyecto / Módulo:** E-commerce Alkosto / Barra de búsqueda
-- **Caso de Prueba Relacionado:** [TC-ALK-003](../02-test-cases/alkosto-test-cases.md#tc-alk-003-búsqueda-con-campo-vacío-o-solo-espacios)
-- **Severidad:** Media *(no bloquea compras normales, pero degrada la experiencia de usuario)*
-- **Prioridad:** P2 (Alta)
-- **Ambiente:**
-  - **Navegador:** Google Chrome (Modo Incógnito)
-  - **Sistema Operativo:** Windows
+- **Project / Module:** Alkosto E-Commerce / Search Bar
+- **Related Test Case:** [TC-ALK-003](../02-test-cases/alkosto-test-cases.md#tc-alk-003-search-with-empty-or-whitespace-only-input)
+- **Severity:** Medium *(does not block standard purchases, but degrades user experience)*
+- **Priority:** P2 (High)
+- **Environment:**
+  - **Browser:** Google Chrome (Incognito Mode)
+  - **OS:** Windows
   - **URL:** `https://www.alkosto.com/`
 
-### 📋 Precondiciones
-1. El usuario se encuentra en la página principal de Alkosto.
+### 📋 Preconditions
+1. User is on the Alkosto homepage.
 
-### 👣 Pasos para reproducir
-1. Hacer clic en la barra de búsqueda `"¿Qué buscas hoy?"`.
-2. Ingresar únicamente espacios en blanco (`"   "`).
-3. Presionar `Enter`.
+### 👣 Steps to Reproduce
+1. Click the `"¿Qué buscas hoy?"` search bar.
+2. Enter whitespace characters only (`"   "`).
+3. Press `Enter`.
 
-### ❌ Resultado Actual
-La página/buscador se queda en blanco/cargando indefinidamente sin mostrar resultados ni mensaje de validación.
+### ❌ Actual Result
+The page/search view remains blank and loading indefinitely without showing results or a validation message.
 
-### ✅ Resultado Esperado
-El sistema debe ignorar los espacios en blanco (aplicar `trim()`), mantener al usuario en el buscador o mostrar un mensaje indicando que ingrese un término válido.
+### ✅ Expected Result
+The system should trim whitespace (`trim()`), keep the user on the search input, or display a validation message prompting for a valid search term.
 
-### 📸 Evidencias
-![Evidencia BUG-001](../06-accessibility-assets/evidences/bug-001-busqueda-espacios-cargando.png)
+### 📸 Evidence
+![BUG-001 Evidence](../06-accessibility-assets/evidences/bug-001-busqueda-espacios-cargando.png)
