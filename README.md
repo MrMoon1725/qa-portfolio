@@ -1,5 +1,7 @@
 # 🧪 QA Portfolio — Mateo Pimienta
 
+[![API Tests (Newman)](https://github.com/MrMoon1725/qa-portfolio/actions/workflows/api-tests.yml/badge.svg)](https://github.com/MrMoon1725/qa-portfolio/actions/workflows/api-tests.yml)
+
 Welcome to my **Quality Assurance (QA)** portfolio. This repository showcases my testing methodology, quality artifacts, and hands-on test execution applied to real-world web applications and REST APIs.
 
 ---
