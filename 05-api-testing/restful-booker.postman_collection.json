@@ -5,9 +5,18 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseUrl", "value": "https://restful-booker.herokuapp.com" },
-    { "key": "token", "value": "" },
-    { "key": "bookingid", "value": "" }
+    {
+      "key": "baseUrl",
+      "value": "https://restful-booker.herokuapp.com"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "bookingid",
+      "value": ""
+    }
   ],
   "item": [
     {
@@ -30,12 +39,25 @@
       ],
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\\n  \"username\": \"admin\",\\n  \"password\": \"password123\"\\n}"
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}"
         },
-        "url": { "raw": "{{baseUrl}}/auth", "host": ["{{baseUrl}}"], "path": ["auth"] }
+        "url": {
+          "raw": "{{baseUrl}}/auth",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth"
+          ]
+        }
       }
     },
     {
@@ -58,7 +80,15 @@
       ],
       "request": {
         "method": "GET",
-        "url": { "raw": "{{baseUrl}}/booking", "host": ["{{baseUrl}}"], "path": ["booking"] }
+        "url": {
+          "raw": "{{baseUrl}}/booking",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
       }
     },
     {
@@ -84,14 +114,28 @@
       "request": {
         "method": "POST",
         "header": [
-          { "key": "Content-Type", "value": "application/json" },
-          { "key": "Accept", "value": "application/json" }
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\\n  \"firstname\": \"Mateo\",\\n  \"lastname\": \"Pimienta\",\\n  \"totalprice\": 250,\\n  \"depositpaid\": true,\\n  \"bookingdates\": {\\n    \"checkin\": \"2026-12-01\",\\n    \"checkout\": \"2026-12-05\"\\n  },\\n  \"additionalneeds\": \"Breakfast\"\\n}"
+          "raw": "{\n  \"firstname\": \"Mateo\",\n  \"lastname\": \"Pimienta\",\n  \"totalprice\": 250,\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-12-01\",\n    \"checkout\": \"2026-12-05\"\n  },\n  \"additionalneeds\": \"Breakfast\"\n}"
         },
-        "url": { "raw": "{{baseUrl}}/booking", "host": ["{{baseUrl}}"], "path": ["booking"] }
+        "url": {
+          "raw": "{{baseUrl}}/booking",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
       }
     },
     {
@@ -114,8 +158,22 @@
       ],
       "request": {
         "method": "GET",
-        "header": [{ "key": "Accept", "value": "application/json" }],
-        "url": { "raw": "{{baseUrl}}/booking/{{bookingid}}", "host": ["{{baseUrl}}"], "path": ["booking", "{{bookingid}}"] }
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingid}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingid}}"
+          ]
+        }
       }
     },
     {
@@ -139,15 +197,33 @@
       "request": {
         "method": "PUT",
         "header": [
-          { "key": "Content-Type", "value": "application/json" },
-          { "key": "Accept", "value": "application/json" },
-          { "key": "Cookie", "value": "token={{token}}" }
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Cookie",
+            "value": "token={{token}}"
+          }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\\n  \"firstname\": \"Mateo\",\\n  \"lastname\": \"Pimienta\",\\n  \"totalprice\": 320,\\n  \"depositpaid\": true,\\n  \"bookingdates\": {\\n    \"checkin\": \"2026-12-01\",\\n    \"checkout\": \"2026-12-05\"\\n  },\\n  \"additionalneeds\": \"Breakfast and Wi-Fi\"\\n}"
+          "raw": "{\n  \"firstname\": \"Mateo\",\n  \"lastname\": \"Pimienta\",\n  \"totalprice\": 320,\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-12-01\",\n    \"checkout\": \"2026-12-05\"\n  },\n  \"additionalneeds\": \"Breakfast and Wi-Fi\"\n}"
         },
-        "url": { "raw": "{{baseUrl}}/booking/{{bookingid}}", "host": ["{{baseUrl}}"], "path": ["booking", "{{bookingid}}"] }
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingid}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingid}}"
+          ]
+        }
       }
     },
     {
@@ -166,10 +242,25 @@
       "request": {
         "method": "DELETE",
         "header": [
-          { "key": "Content-Type", "value": "application/json" },
-          { "key": "Cookie", "value": "token={{token}}" }
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Cookie",
+            "value": "token={{token}}"
+          }
         ],
-        "url": { "raw": "{{baseUrl}}/booking/{{bookingid}}", "host": ["{{baseUrl}}"], "path": ["booking", "{{bookingid}}"] }
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingid}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingid}}"
+          ]
+        }
       }
     },
     {
@@ -187,7 +278,16 @@
       ],
       "request": {
         "method": "GET",
-        "url": { "raw": "{{baseUrl}}/booking/999999999", "host": ["{{baseUrl}}"], "path": ["booking", "999999999"] }
+        "url": {
+          "raw": "{{baseUrl}}/booking/999999999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "999999999"
+          ]
+        }
       }
     }
   ]
